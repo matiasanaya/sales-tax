@@ -24,7 +24,7 @@ RSpec.describe SalesTax::Accountable do
     subject { accountable_double.unit_sales_tax }
 
     context 'when basic exempt' do
-      ['food', 'medical', 'book'].each do |cat|
+      ['food', 'medicine', 'book'].each do |cat|
         context "when #{cat}" do
           let(:category) { cat.to_sym }
 

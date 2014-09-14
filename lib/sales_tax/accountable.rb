@@ -45,7 +45,7 @@ module SalesTax
     end
 
     def basic_sales_tax_exempt?
-      [:food, :medical, :book].include?(category)
+      [:food, :medicine, :book].include?(category)
     end
   end
 end
