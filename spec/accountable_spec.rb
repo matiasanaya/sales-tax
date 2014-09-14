@@ -3,11 +3,11 @@ require_relative 'shared_examples_for_accountable'
 require_relative 'shared_examples_for_taxable'
 
 RSpec.describe SalesTax::Accountable do
-  AccountableDouble = Struct.new(:unit_price, :imported?, :category) do
+  AccountableDouble = Struct.new(:unit_price_str, :imported?, :category) do
     include SalesTax::Accountable
     def to_hash
       accountable_to_hash.merge({
-        unit_price: unit_price
+        unit_price: unit_price_str
       })
     end
   end

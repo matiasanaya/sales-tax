@@ -8,10 +8,14 @@ module SalesTax
 
     private
 
+    def unit_price
+      BigDecimal(unit_price_str)
+    end
+
     def accountable_to_hash
       {
-        unit_sales_tax: unit_sales_tax,
-        total_unit_price: unit_price + unit_sales_tax
+        unit_sales_tax: unit_sales_tax.to_s('F'),
+        total_unit_price: (unit_price + unit_sales_tax).to_s('F')
       }
     end
 
