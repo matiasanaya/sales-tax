@@ -15,6 +15,18 @@ RSpec.describe SalesTax::LineItem::Parser do
     end
   end
 
+  context 'when cherry picked input' do
+    it_behaves_like 'a correct parser',
+                    '1, book, 12.49',
+                    {
+                      quantity: 1,
+                      description: 'book',
+                      unit_price: '12.49',
+                      unit_sales_tax: '0.0',
+                      total_unit_price: '12.49'
+                    }
+  end
+
   context 'when invalid input' do
     context 'with missing arguments' do
       it_behaves_like 'a complaining parser',

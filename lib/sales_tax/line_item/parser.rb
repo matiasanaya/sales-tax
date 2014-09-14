@@ -25,6 +25,7 @@ module SalesTax
       end
 
       @matcher = lambda do |_in|
+        match = nil
         [LineItem::Book, LineItem::Medicine, LineItem::Food].each do |matcher|
           match = matcher.match(_in)
           break if match
