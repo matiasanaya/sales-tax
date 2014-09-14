@@ -4,6 +4,12 @@ module SalesTax
       def category
         :medicine
       end
+
+      private
+
+      def self.description_matcher
+        /headache/
+      end
     end
   end
 end

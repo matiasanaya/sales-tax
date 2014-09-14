@@ -4,6 +4,12 @@ module SalesTax
       def category
         :book
       end
+
+      private
+
+      def self.description_matcher
+        /book/
+      end
     end
   end
 end

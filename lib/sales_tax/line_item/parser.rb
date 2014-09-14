@@ -1,3 +1,8 @@
+require_relative 'base'
+require_relative 'book'
+require_relative 'food'
+require_relative 'medicine'
+
 module SalesTax
   module LineItem
     module Parser
@@ -19,9 +24,17 @@ module SalesTax
         }
       end
 
+      @matcher = lambda do |_in|
+        [LineItem::Book, LineItem::Medicine, LineItem::Food].each do |matcher|
+          match = matcher.match(_in)
+          break if match
+        end
+        match ||= LineItem::Base.match(_in)
+      end
+
       def parse(_in)
         @input_validator.call(_in)
-        @pre_processor.call(_in)
+        @matcher.call(@pre_processor.call(_in))
       end
     end
   end

@@ -5,6 +5,10 @@ module SalesTax
     class Base
       include SalesTax::Accountable
 
+      def self.match(attributes)
+        new(attributes).to_hash if attributes[:description] =~ description_matcher
+      end
+
       def initialize(args = {})
         @quantity = args[:quantity]
         @description = args[:description]
@@ -22,6 +26,10 @@ module SalesTax
       private
 
       attr_reader :quantity, :description, :unit_price_str
+
+      def self.description_matcher
+        /\w+/
+      end
 
       def category
         :other
