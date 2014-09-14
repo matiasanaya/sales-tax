@@ -47,6 +47,11 @@ RSpec.describe SalesTax::LineItem::Parser do
                         unit_price: '12.49'
                       }
     end
+    context 'moar control' do
+      it 'it has accountable fields' do
+        expect(parser.parse('1, description, 12.49')).to include :unit_sales_tax, :total_unit_price
+      end
+    end
 
     context 'with quantity' do
       it_behaves_like 'a correct parser',
