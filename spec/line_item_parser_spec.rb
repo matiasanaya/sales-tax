@@ -43,7 +43,7 @@ RSpec.describe SalesTax::LineItem::Parser do
                       '1, description, 12.49',
                       {
                         quantity: 1,
-                        description: ' description',
+                        description: 'description',
                         unit_price: '12.49'
                       }
     end
@@ -62,7 +62,7 @@ RSpec.describe SalesTax::LineItem::Parser do
     context 'with description' do
       it_behaves_like 'a correct parser',
                       '0, a imported description, 0.0',
-                      {description: ' a imported description'}
+                      {description: 'a imported description'}
     end
 
     context 'with unit price' do

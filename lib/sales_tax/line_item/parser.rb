@@ -19,7 +19,7 @@ module SalesTax
 
         {
           quantity: quantity_str.to_i,
-          description: description,
+          description: description.strip,
           unit_price: unit_price_str.strip
         }
       end
