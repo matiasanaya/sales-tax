@@ -13,9 +13,8 @@ module SalesTax
       total = BigDecimal('0')
       sales_taxes_total = BigDecimal('0')
       items.each do |item|
-        h = item.to_hash
-        total += h[:total_unit_price]
-        sales_taxes_total += h[:unit_sales_tax]
+        total += item[:total_unit_price]
+        sales_taxes_total += item[:unit_sales_tax]
         _print << print_item(item)
       end
       _print << "\n"
@@ -39,13 +38,8 @@ module SalesTax
     end
 
     def print_item(item)
-      print_item_from_hash(item.to_hash)
-    end
-
-    def print_item_from_hash(hash)
-      taxed_price_str = format_bd_to_price_string(hash[:total_unit_price])
-
-      "#{hash[:quantity]}, #{hash[:description]}, #{taxed_price_str}\n"
+      taxed_price_str = format_bd_to_price_string(item[:total_unit_price])
+      "#{item[:quantity]}, #{item[:description]}, #{taxed_price_str}\n"
     end
 
     def format_bd_to_price_string(bd)

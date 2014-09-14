@@ -1,12 +1,6 @@
 require_relative '../lib/sales_tax/receipt'
 
 RSpec.describe SalesTax::Receipt do
-  ItemDouble = Struct.new(:hash) do
-    def to_hash
-      hash
-    end
-  end
-
   let(:receipt) { SalesTax::Receipt.new }
 
   describe 'the public interface' do
@@ -28,13 +22,13 @@ RSpec.describe SalesTax::Receipt do
 
     context 'with item 0' do
       let!(:item_0) {
-        _item = ItemDouble.new(
+        _item = {
           quantity: 1,
           description: 'a item',
           unit_price: BigDecimal('11.1'),
           unit_sales_tax: BigDecimal('0'),
           total_unit_price: BigDecimal('11.1')
-        )
+        }
         receipt.add_item(_item)
         _item
       }
@@ -55,24 +49,24 @@ RSpec.describe SalesTax::Receipt do
 
     context 'with two items' do
       let!(:item_1) {
-        _item = ItemDouble.new(
+        _item = {
           quantity: 1,
           description: 'a description',
           unit_price: BigDecimal('12.49'),
           unit_sales_tax: BigDecimal('0.65'),
           total_unit_price: BigDecimal('13.14')
-        )
+        }
         receipt.add_item(_item)
         _item
       }
       let!(:item_2) {
-        _item = ItemDouble.new(
+        _item = {
           quantity: 1,
           description: 'another description',
           unit_price: BigDecimal('18.99'),
           unit_sales_tax: BigDecimal('1.9'),
           total_unit_price: BigDecimal('20.89')
-        )
+        }
         receipt.add_item(_item)
         _item
       }
