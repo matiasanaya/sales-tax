@@ -12,12 +12,11 @@ module SalesTax
       end
 
       def to_hash
-        {
+        accountable_to_hash.merge({
           quantity: quantity,
           description: description,
           unit_price: unit_price,
-          unit_sales_tax: unit_sales_tax
-        }
+        })
       end
 
       private

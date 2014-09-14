@@ -5,6 +5,11 @@ require_relative 'shared_examples_for_taxable'
 RSpec.describe SalesTax::Accountable do
   AccountableDouble = Struct.new(:unit_price, :imported?, :category) do
     include SalesTax::Accountable
+    def to_hash
+      accountable_to_hash.merge({
+        unit_price: unit_price
+      })
+    end
   end
   let(:accountable_double) {
     AccountableDouble.new(BigDecimal('11.25'), imported?, category)

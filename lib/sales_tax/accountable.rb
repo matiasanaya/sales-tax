@@ -8,6 +8,13 @@ module SalesTax
 
     private
 
+    def accountable_to_hash
+      {
+        unit_sales_tax: unit_sales_tax,
+        total_unit_price: unit_price + unit_sales_tax
+      }
+    end
+
     def round_tax(tax)
       round_factor = BigDecimal('1')/BigDecimal('0.05')
       (tax * round_factor).ceil/round_factor
