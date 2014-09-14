@@ -20,7 +20,7 @@ Proper object orientated design is important. Each row in the input represents a
 Input:
 
     1, book, 12.49
-    1, music cd, 14.99
+    1, music CD, 14.99
     1, chocolate bar, 0.85
 
 Output:
@@ -61,7 +61,7 @@ Output:
     1, imported bottle of perfume, 32.19
     1, bottle of perfume, 20.89
     1, packet of headache pills, 9.75
-    1, imported box of chocolates, 11.85
+    1, box of imported chocolates, 11.85
 
     Sales Taxes: 6.70
     Total: 74.68
