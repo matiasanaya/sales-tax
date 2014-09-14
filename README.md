@@ -21,7 +21,7 @@ Input:
 
     1, book, 12.49
     1, music cd, 14.99
-    1 chocolate bar, 0.85
+    1, chocolate bar, 0.85
 
 Output:
 
