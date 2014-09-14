@@ -33,6 +33,8 @@ RSpec.shared_examples 'a line item' do
     context 'when imported' do
       let(:description) {'a imported description'}
       it { is_expected.to be }
+      let(:description) {'imported description'}
+      it { is_expected.to be }
     end
     context 'when local' do
       let(:description) {'a local description'}

@@ -36,7 +36,7 @@ module SalesTax
       end
 
       def imported?
-        description =~ /\simported\s/
+        description =~ /imported/
       end
     end
   end
