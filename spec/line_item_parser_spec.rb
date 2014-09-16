@@ -15,17 +15,7 @@ RSpec.describe SalesTax::LineItem::Parser do
     end
   end
 
-  context 'when cherry picked input' do
-    it_behaves_like 'a correct parser',
-                    '1, book, 12.49',
-                    {
-                      quantity: 1,
-                      description: 'book',
-                      unit_price: '12.49',
-                      unit_sales_tax: '0.0',
-                      total_unit_price: '12.49'
-                    }
-  end
+  it "asks for augmenting of it's parsing"
 
   context 'when invalid input' do
     context 'with missing arguments' do
@@ -54,21 +44,16 @@ RSpec.describe SalesTax::LineItem::Parser do
       it_behaves_like 'a correct parser',
                       '1, description, 12.49',
                       {
-                        quantity: 1,
+                        quantity: '1',
                         description: 'description',
                         unit_price: '12.49'
                       }
-    end
-    context 'moar control' do
-      it 'it has accountable fields' do
-        expect(parser.parse('1, description, 12.49')).to include :unit_sales_tax, :total_unit_price
-      end
     end
 
     context 'with quantity' do
       it_behaves_like 'a correct parser',
                       '5, description, 0.0',
-                      {quantity: 5}
+                      {quantity: '5'}
     end
 
     context 'with description' do

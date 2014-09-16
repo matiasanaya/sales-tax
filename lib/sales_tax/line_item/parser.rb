@@ -18,24 +18,24 @@ module SalesTax
         quantity_str, description, unit_price_str = _in.split(',')
 
         {
-          quantity: quantity_str.to_i,
+          quantity: quantity_str,
           description: description.strip,
           unit_price: unit_price_str.strip
         }
       end
 
-      @matcher = lambda do |_in|
-        match = nil
-        [LineItem::Book, LineItem::Medicine, LineItem::Food].each do |matcher|
-          match = matcher.match(_in)
-          break if match
+      @augmenter = lambda do |_in|
+        augmented = nil
+        [LineItem::Book, LineItem::Medicine, LineItem::Food].each do |augmenter|
+          augmented = augmenter.augment(_in)
+          break if augmented
         end
-        match ||= LineItem::Base.match(_in)
+        augmented || LineItem::Base.augment(_in)
       end
 
       def parse(_in)
         @input_validator.call(_in)
-        @matcher.call(@pre_processor.call(_in))
+        @augmenter.call(@pre_processor.call(_in))
       end
     end
   end
