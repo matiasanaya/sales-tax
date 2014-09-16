@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = 'salestax'
-  spec.version       = '0.0.1'
+  spec.version       = '0.0.2'
   spec.authors       = ['Matias Anaya']
   spec.email         = ['matiasanaya@gmail.com']
   spec.summary       = %q{A basic sales tax calculator}
