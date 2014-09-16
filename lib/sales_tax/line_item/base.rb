@@ -5,27 +5,29 @@ module SalesTax
     class Base
       include SalesTax::Accountable
 
-      def self.match(attributes)
+      def self.augment(attributes)
         new(attributes).to_hash if attributes[:description] =~ description_matcher
       end
 
       def initialize(args = {})
-        @quantity = args[:quantity]
+        @quantity_str = args[:quantity] || ''
         @description = args[:description]
-        @unit_price_str = args[:unit_price]
+        @unit_price_str = args[:unit_price] || ''
       end
 
       def to_hash
-        accountable_to_hash.merge({
-          quantity: quantity,
-          description: description,
-          unit_price: unit_price_str
-        })
+        accountable_hash.merge(
+          {
+            quantity: quantity_str,
+            description: description,
+            unit_price: unit_price_str
+          }
+        )
       end
 
       private
 
-      attr_reader :quantity, :description, :unit_price_str
+      attr_reader :quantity_str, :description, :unit_price_str
 
       def self.description_matcher
         /\w+/
@@ -36,7 +38,7 @@ module SalesTax
       end
 
       def imported?
-        description =~ /imported/
+        /imported/.match(description) ? true : false
       end
     end
   end
