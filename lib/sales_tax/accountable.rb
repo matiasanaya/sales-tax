@@ -2,21 +2,27 @@ require 'bigdecimal'
 
 module SalesTax
   module Accountable
-    def unit_sales_tax
-      round_tax(unit_price * sales_tax_rate)
+    def to_hash
+      accountable_hash
     end
 
-    private
+    protected
 
-    def unit_price
-      BigDecimal(unit_price_str)
-    end
-
-    def accountable_to_hash
+    def accountable_hash
       {
         unit_sales_tax: unit_sales_tax.to_s('F'),
         total_unit_price: (unit_price + unit_sales_tax).to_s('F')
       }
+    end
+
+    private
+
+    def unit_sales_tax
+      round_tax(unit_price * sales_tax_rate)
+    end
+
+    def unit_price
+      BigDecimal(unit_price_str)
     end
 
     def round_tax(tax)
