@@ -9,9 +9,10 @@ module SalesTax
     end
 
     def print
-      _print = ""
       total = BigDecimal('0')
       sales_taxes_total = BigDecimal('0')
+
+      _print = ""
       items.each do |item|
         total += BigDecimal(item[:total_unit_price])
         sales_taxes_total += BigDecimal(item[:unit_sales_tax])
@@ -20,6 +21,7 @@ module SalesTax
       _print << "\n"
       _print << print_sales_taxes_total(sales_taxes_total)
       _print << print_total(total)
+
       _print
     end
 
@@ -33,8 +35,8 @@ module SalesTax
     end
 
     def print_sales_taxes_total(bd)
-      total  = format_to_money_string(bd.to_s('F'))
-      "Sales Taxes: #{total}\n"
+      st_total  = format_to_money_string(bd.to_s('F'))
+      "Sales Taxes: #{st_total}\n"
     end
 
     def print_item(item)

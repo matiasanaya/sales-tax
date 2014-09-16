@@ -20,17 +20,19 @@ RSpec.describe SalesTax::Receipt do
     subject { receipt.print }
     it { is_expected.to be_instance_of String }
 
-    context 'with item 0' do
-      let!(:item_0) {
-        _item = {
-          quantity: 1,
-          description: 'a item',
-          unit_price: BigDecimal('11.1'),
-          unit_sales_tax: BigDecimal('0'),
-          total_unit_price: BigDecimal('11.1')
-        }
-        receipt.add_item(_item)
-        _item
+    context 'in general' do
+      let(:receipt) {
+        items = [
+          {
+            quantity: '1',
+            description: 'a item',
+            unit_price: '11.1',
+            unit_sales_tax: '0',
+            total_unit_price: '11.1'
+          },
+        ]
+
+        SalesTax::Receipt.new(items: items)
       }
 
       it 'formats numbers to two decimal places' do
@@ -48,27 +50,25 @@ RSpec.describe SalesTax::Receipt do
     end
 
     context 'with two items' do
-      let!(:item_1) {
-        _item = {
-          quantity: 1,
-          description: 'a description',
-          unit_price: BigDecimal('12.49'),
-          unit_sales_tax: BigDecimal('0.65'),
-          total_unit_price: BigDecimal('13.14')
-        }
-        receipt.add_item(_item)
-        _item
-      }
-      let!(:item_2) {
-        _item = {
-          quantity: 1,
-          description: 'another description',
-          unit_price: BigDecimal('18.99'),
-          unit_sales_tax: BigDecimal('1.9'),
-          total_unit_price: BigDecimal('20.89')
-        }
-        receipt.add_item(_item)
-        _item
+      let(:receipt) {
+        items = [
+          {
+            quantity: '1',
+            description: 'a description',
+            unit_price: '12.49',
+            unit_sales_tax: '0.65',
+            total_unit_price: '13.14'
+          },
+          {
+            quantity: '1',
+            description: 'another description',
+            unit_price: '18.99',
+            unit_sales_tax: '1.9',
+            total_unit_price: '20.89'
+          }
+        ]
+
+        SalesTax::Receipt.new(items: items)
       }
 
       it 'prints every item' do
