@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/sales_tax'
+require 'sales_tax'
 
 SalesTax::Application.new.run
